@@ -26,6 +26,10 @@ const App: React.FC = () => {
     }));
   };
 
+  const editItinerary = (updatedItinerary: Itinerary) => {
+    setItineraries((prev) => prev.map(it => it.id === updatedItinerary.id ? updatedItinerary : it));
+  };
+
   const handlePlanTrip = (destination: string) => {
     setInitialSearchQuery(destination);
     setActiveTab(Tab.SEARCH);
@@ -38,6 +42,7 @@ const App: React.FC = () => {
           <ItineraryTab 
             itineraries={itineraries} 
             onUpdateNote={updateItineraryNote}
+            onEditItinerary={editItinerary}
             onBrowse={() => setActiveTab(Tab.SEARCH)}
           />
         );

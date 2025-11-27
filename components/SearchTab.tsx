@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { DestinationDetails, DayPlan, Itinerary, Tab } from '../types';
 import { searchDestination, generateTripPlan } from '../services/geminiService';
@@ -421,19 +420,14 @@ const SearchTab: React.FC<SearchTabProps> = ({ onAddItinerary, setActiveTab, ini
                       <span className="text-[10px] leading-none text-blue-400">{formattedDate}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-gray-800 text-sm mb-1 truncate">{plan.title}</h4>
-                      <div className="space-y-1 mt-1">
-                          {plan.activities.slice(0, 3).map((act, i) => (
-                              <div key={i} className="flex items-center text-xs text-gray-500">
-                                  <span className="w-10 text-gray-400 mr-2 flex-shrink-0 text-right">{act.time.split('-')[0]}</span>
-                                  <span className="truncate">{act.description}</span>
+                      <h4 className="font-bold text-gray-800 text-sm mb-2">{plan.title}</h4>
+                      <div className="space-y-2">
+                          {plan.activities.map((act, i) => (
+                              <div key={i} className="flex items-start text-xs text-gray-500">
+                                  <span className="w-10 text-gray-400 mr-2 flex-shrink-0 text-right pt-0.5">{act.time.split('-')[0]}</span>
+                                  <span className="text-gray-600 leading-relaxed">{act.description}</span>
                               </div>
                           ))}
-                          {plan.activities.length > 3 && (
-                             <div className="text-xs text-blue-400 pl-12">
-                                + 更多活动
-                             </div>
-                          )}
                       </div>
                     </div>
                   </div>
@@ -444,13 +438,13 @@ const SearchTab: React.FC<SearchTabProps> = ({ onAddItinerary, setActiveTab, ini
 
            {/* Floating Save Button */}
            <div className="fixed bottom-20 left-0 w-full px-4 z-40 pointer-events-none">
-              <div className="max-w-md mx-auto pointer-events-auto">
+              <div className="flex justify-center pointer-events-auto">
                 <button
                   onClick={handleSaveItinerary}
-                  className="w-full py-4 bg-green-600 text-white rounded-2xl font-bold shadow-xl shadow-green-600/30 hover:bg-green-700 transition-all flex items-center justify-center space-x-2"
+                  className="px-8 py-3 bg-green-600 text-white rounded-full font-bold shadow-xl shadow-green-600/30 hover:bg-green-700 transition-all flex items-center space-x-2 transform hover:scale-105 active:scale-95 w-auto"
                 >
-                  <i className="fas fa-plus-circle"></i>
-                  <span>添加到我的行程</span>
+                  <i className="fas fa-check-circle"></i>
+                  <span>保存</span>
                 </button>
               </div>
            </div>
